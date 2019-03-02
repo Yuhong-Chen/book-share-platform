@@ -1,3 +1,5 @@
+package tests;
+
 import org.junit.Test;
 
 import static org.junit.Assert.assertTrue;
@@ -8,5 +10,4 @@ public class TestAPI {
     public void alwaysTrue() {
         assertTrue(true);
     }
-
 }

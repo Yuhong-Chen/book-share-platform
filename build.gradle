@@ -17,11 +17,12 @@ repositories {
 
 sourceSets {
     main {
-        java.srcDir("src/impl")
+        java.srcDir("src")
+        resources.srcDir("resources")
     }
 
     test {
-        java.srcDir("src/tests")
+        java.srcDir("src")
     }
 }
 
@@ -54,4 +55,4 @@ javafx {
     modules = [ 'javafx.controls' ]
 }
 
-mainClassName = "GUI.MainScreen"
+mainClassName = "impl.GUI.Login"
