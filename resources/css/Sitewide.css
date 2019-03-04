@@ -1,0 +1,8 @@
+@import url('https://fonts.googleapis.com/css?family=Poiret+One');
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+.text-field {
+    -fx-font-family: "Roboto";
+    -jfx-focus-color: deepskyblue;
+    -jfx-unfocus-color: #333;
+}

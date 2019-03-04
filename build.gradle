@@ -7,6 +7,8 @@
 
 plugins {
     id "java"
+    id 'application'
+    id 'org.openjfx.javafxplugin' version '0.0.7'
 }
 
 repositories {
@@ -15,11 +17,12 @@ repositories {
 
 sourceSets {
     main {
-        java.srcDir("src/impl")
+        java.srcDir("src")
+        resources.srcDir("resources")
     }
 
     test {
-        java.srcDir("src/tests")
+        java.srcDir("src")
     }
 }
 
@@ -35,6 +38,22 @@ dependencies {
 
     implementation 'com.google.code.gson:gson:2.8.5'
 
+    //JFoenix for Java GUI
+    compile 'com.jfoenix:jfoenix:8.0.8' // Java 8
+    compile 'com.jfoenix:jfoenix:9.0.8' // Java 9
+
     compile 'junit:junit:4.12'
     testCompile 'junit:junit:4.12'
 }
+
+/*javafx {
+    // modules = [ "javafx.base", 'javafx.graphics', "javafx.controls"]
+    modules = [ 'javafx.graphics', "javafx.controls"]
+}*/
+
+javafx {
+    modules = [ 'javafx.controls' ]
+}
+
+mainClassName = "impl.GUI.Register"
+//mainClassName = "impl.GUI.Login"
