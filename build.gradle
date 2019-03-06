@@ -46,14 +46,9 @@ dependencies {
     testCompile 'junit:junit:4.12'
 }
 
-/*javafx {
-    // modules = [ "javafx.base", 'javafx.graphics', "javafx.controls"]
-    modules = [ 'javafx.graphics', "javafx.controls"]
-}*/
-
 javafx {
     modules = [ 'javafx.controls' ]
 }
 
-mainClassName = "impl.GUI.Register"
-//mainClassName = "impl.GUI.Login"
+//mainClassName = "impl.GUI.Register"
+mainClassName = "impl.GUI.Login"
