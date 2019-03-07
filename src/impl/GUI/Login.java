@@ -1,10 +1,12 @@
 package impl.GUI;
 
+import com.google.gson.JsonObject;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.controls.base.IFXLabelFloatControl;
 import com.jfoenix.validation.RequiredFieldValidator;
+import impl.model.Request;
 import javafx.application.Application;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -13,7 +15,6 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-import impl.Requests.Users;
 
 public class Login extends Application {
 
@@ -55,9 +56,15 @@ public class Login extends Application {
         button.getStyleClass().add("login-button");
         myPane.getChildren().add(button);
 
-        button.setOnAction((event -> {
-            Users.execLogin(username.getText(), password.getText());
-        }));
+        //Send login request
+        button.setOnAction(event -> {
+            Request request = new Request("/login");
+            JsonObject json = new JsonObject();
+
+            json.addProperty("username", username.getText());
+            json.addProperty("password", password.getText());
+            request.post(json);
+        });
         //·
 
         myPane.getChildren().add(infoPane);
