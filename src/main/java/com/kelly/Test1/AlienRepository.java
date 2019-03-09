@@ -1,40 +1,98 @@
 package com.kelly.Test1;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.mysql.*;
+
 public class AlienRepository {
 
-	List<Alien> aliens;
+	
+	Connection con = null;
+	
 	public AlienRepository () {
-		aliens = new ArrayList<>();
 		
-		Alien a1 = new Alien();
-		a1.setId(1);
-		a1.setUserName("Kelly");
-		a1.setUserPwd("123");
+		String url="jdbc:mysql://localhost:3306/test1";
+		//String url="jdbc:mysql://ww39.host.cs.st-andrews.ac.uk:3306/ww39_CS5031p2";
+		String username ="root";
+		String password = "123456wwz";
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			con =DriverManager.getConnection(url,username,password);
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.print(e);
+		}
+		if(con==null) {
+			System.out.println("not connecte");
+		}else {
+			System.out.println("connect successful");
+		}
 		
-		Alien a2 = new Alien();
-		a2.setId(2);
-		a2.setUserName("Kelly");
-		a2.setUserPwd("123");
 		
-		aliens.add(a1);
-		aliens.add(a2);
 	}
 	
 	public List<Alien> getAliens() {
+		List<Alien> aliens = new ArrayList<Alien>();
+		String sql1 = "select * from user";
+		try {
+			Statement st = con.createStatement();
+			ResultSet rs= st.executeQuery(sql1);
+			while (rs.next()) {
+				Alien a = new Alien();
+				a.setId(rs.getInt(1));
+				a.setUserName(rs.getString(2));
+				a.setUserPwd(rs.getString(3));
+				
+				aliens.add(a);
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println(e);
+		}
 		return aliens;
+		
 		
 	}
 	
 	public Alien getAlien(int id) {
-		for (Alien alien : aliens) {
-			if (alien.getId()==id) {
-				return alien;
+		Alien a=new Alien();
+		String sql2 = "select * from user where id="+id;
+		try {
+			Statement st = con.createStatement();
+			ResultSet rs= st.executeQuery(sql2);
+			if (rs.next()) {
+				a.setId(rs.getInt(1));
+				a.setUserName(rs.getString(2));
+				a.setUserPwd(rs.getString(3));
 			}
-			
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println(e);
 		}
-		return null;
+		return a;
 	}
+	
+	public void create(Alien a1) {
+		String sql3 = "insert into user values (?,?,?)";
+		try {
+			PreparedStatement pt =  (PreparedStatement) con.prepareStatement(sql3);
+			pt.setInt(1, a1.getId());
+			pt.setString(2, a1.getUserName());
+			pt.setString(3, a1.getUserPwd());
+			pt.executeUpdate();
+			System.out.println("add to the database");
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println(e);
+		}
+	}
+	
 }
