@@ -1,21 +1,21 @@
-package com.kelly.Test1;
+package com.kelly.bean;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
 
 @XmlRootElement
-public class Alien {
+public class user {
 	private int id;
 	private String userName;
 	private String userPwd;
 	
-	public Alien() {
+	public user() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 	
 	
-	public Alien(int id, String userName, String userPwd) {
+	public user(int id, String userName, String userPwd) {
 		super();
 		this.id = id;
 		this.userName = userName;

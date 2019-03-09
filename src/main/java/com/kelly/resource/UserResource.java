@@ -1,4 +1,4 @@
-package com.kelly.Test1;
+package com.kelly.resource;
 
 import java.util.List;
 
@@ -12,16 +12,19 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import com.kelly.bean.user;
+import com.kelly.dao.UserRepository;
+
 @Path("users")
 
-public class AlienResource {
+public class UserResource {
 	
-	AlienRepository repo = new AlienRepository();
+	UserRepository repo = new UserRepository();
 	
 	
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<Alien> getAliens() {
+	public List<user> getAliens() {
 		
 		System.out.print("calling");
 		return repo.getAliens();
@@ -30,7 +33,7 @@ public class AlienResource {
 	@GET
 	@Path("/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Alien getAlien(@PathParam("id") int id) {
+	public user getAlien(@PathParam("id") int id) {
 		return repo.getAlien(id);
 	}
 	
@@ -38,21 +41,21 @@ public class AlienResource {
 	@Path("register")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Alien createAlien(Alien alien) {
+	public user createAlien(user user) {
 		//System.out.println(alien);
-		repo.create(alien);
+		repo.create(user);
 		System.out.println("finish create");
-		return alien;
+		return user;
 	}
 	
 	@PUT
-	@Path("/{id}")
+	@Path("/update/{id}")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Alien updateAlien(@PathParam("id") int id,Alien alien) {
-		repo.update(id,alien);
+	public user updateAlien(@PathParam("id") int id,user user) {
+		repo.update(id,user);
 		System.out.println("update successful");
-		return alien;
+		return user;
 	}
 	
 	@DELETE

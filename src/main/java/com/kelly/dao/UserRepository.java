@@ -1,4 +1,4 @@
-package com.kelly.Test1;
+package com.kelly.dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -8,14 +8,15 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.kelly.bean.user;
 import com.mysql.*;
 
-public class AlienRepository {
+public class UserRepository {
 
 	
 	Connection con = null;
 	
-	public AlienRepository () {
+	public UserRepository () {
 		
 		String url="jdbc:mysql://localhost:3306/test1";
 		//String url="jdbc:mysql://ww39.host.cs.st-andrews.ac.uk:3306/ww39_CS5031p2";
@@ -38,31 +39,31 @@ public class AlienRepository {
 		
 	}
 	
-	public List<Alien> getAliens() {
-		List<Alien> aliens = new ArrayList<Alien>();
+	public List<user> getAliens() {
+		List<user> users = new ArrayList<user>();
 		String sql1 = "select * from user";
 		try {
 			Statement st = con.createStatement();
 			ResultSet rs= st.executeQuery(sql1);
 			while (rs.next()) {
-				Alien a = new Alien();
+				user a = new user();
 				a.setId(rs.getInt(1));
 				a.setUserName(rs.getString(2));
 				a.setUserPwd(rs.getString(3));
 				
-				aliens.add(a);
+				users.add(a);
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
 			System.out.println(e);
 		}
-		return aliens;
+		return users;
 		
 		
 	}
 	
-	public Alien getAlien(int id) {
-		Alien a=new Alien();
+	public user getAlien(int id) {
+		user a=new user();
 		String sql2 = "select * from user where id="+id;
 		try {
 			Statement st = con.createStatement();
@@ -79,7 +80,7 @@ public class AlienRepository {
 		return a;
 	}
 	
-	public void create(Alien a1) {
+	public void create(user a1) {
 		String sql3 = "insert into user values (?,?,?)";
 		try {
 			PreparedStatement pt =  (PreparedStatement) con.prepareStatement(sql3);
@@ -95,7 +96,7 @@ public class AlienRepository {
 		}
 	}
 	
-	public void update(int id, Alien a1) {
+	public void update(int id, user a1) {
 		String sql4="updata user set username='"+a1.getUserName()+"', userpwd='"+a1.getUserPwd()+"' where id='"+id+"'";
 		try {
 			PreparedStatement pt =  (PreparedStatement) con.prepareStatement(sql4);
