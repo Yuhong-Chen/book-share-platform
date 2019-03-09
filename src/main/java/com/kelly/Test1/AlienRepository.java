@@ -95,4 +95,28 @@ public class AlienRepository {
 		}
 	}
 	
+	public void update(int id, Alien a1) {
+		String sql4="updata user set username='"+a1.getUserName()+"', userpwd='"+a1.getUserPwd()+"' where id='"+id+"'";
+		try {
+			PreparedStatement pt =  (PreparedStatement) con.prepareStatement(sql4);
+			pt.executeUpdate();
+			System.out.println("update to the database");
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println(e);
+		}
+	}
+	
+	public void delete(int id) {
+		String sql5= "delete from user where id ='"+id+"'";
+		try {
+			PreparedStatement pt =  (PreparedStatement) con.prepareStatement(sql5);
+			pt.executeUpdate();
+			System.out.println("update to the database");
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println(e);
+		}
+	}
 }
