@@ -55,6 +55,7 @@ public class UserRepository {
 				
 				users.add(a);
 			}
+			System.out.println("returned all users");
 		} catch (Exception e) {
 			// TODO: handle exception
 			System.out.println(e);
@@ -116,7 +117,7 @@ public class UserRepository {
 		try {
 			PreparedStatement pt =  (PreparedStatement) con.prepareStatement(sql5);
 			pt.executeUpdate();
-			System.out.println("update to the database");
+			System.out.println("deleted in the database");
 		} catch (Exception e) {
 			// TODO: handle exception
 			System.out.println(e);
