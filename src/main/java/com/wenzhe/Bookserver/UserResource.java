@@ -1,0 +1,72 @@
+package com.wenzhe.Bookserver;
+
+
+
+import java.util.List;
+
+import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+
+import com.wenzhe.bean.user;
+import com.wenzhe.dao.UserRepository;
+
+
+@Path("user")
+public class UserResource {
+	
+	UserRepository repo = new UserRepository();
+	
+	
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<user> getAliens() {
+		
+		System.out.print("calling");
+		return repo.getAliens();
+	}
+
+	@GET
+	@Path("/{id}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public user getAlien(@PathParam("id") int id) {
+		return repo.getAlien(id);
+	}
+	
+	@POST
+	@Path("create")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public user createAlien(user user) {
+		//System.out.println(alien);
+		repo.create(user);
+		System.out.println("finish create");
+		return user;
+	}
+	
+	@PUT
+	@Path("/update/{id}")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public user updateAlien(@PathParam("id") int id,user user) {
+		repo.update(id,user);
+		System.out.println("update successful");
+		return user;
+	}
+	
+	@DELETE
+	@Path("/delete/{id}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public void deleteAlien(@PathParam("id") int id) {
+		repo.delete(id);
+		System.out.print("delete successful");
+	}
+	
+	
+}
