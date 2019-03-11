@@ -80,7 +80,6 @@ public class BookRepository {
 			pt.setString(4, b1.getPublisher());
 			pt.setString(5, b1.getBookdiscription());
 			pt.setString(6, b1.getOwner());
-		
 			pt.executeUpdate();
 			System.out.println("add book to the database");
 			
