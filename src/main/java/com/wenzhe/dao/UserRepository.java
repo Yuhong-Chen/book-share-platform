@@ -13,17 +13,16 @@ import java.util.List;
 import com.wenzhe.bean.user;
 
 public class UserRepository {
+	public static int IdCounter = 1;
 
 	
 	Connection con = null;
 	
 	public UserRepository () {
 		
-		//String url="jdbc:mysql://localhost:3306/test1";
 		String url="jdbc:mysql://ww39.host.cs.st-andrews.ac.uk:3306/ww39_CS5031p2";
 		String username ="ww39";
 		String password = "h01F667.24beES";
-		//String password = "123456wwz";
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			con =DriverManager.getConnection(url,username,password);
@@ -87,7 +86,7 @@ public class UserRepository {
 		String sql3 = "insert into user values (?,?,?)";
 		try {
 			PreparedStatement pt =  (PreparedStatement) con.prepareStatement(sql3);
-			pt.setInt(1, a1.getId());
+			pt.setInt(1,a1.getId() );
 			pt.setString(2, a1.getUserName());
 			pt.setString(3, a1.getUserPwd());
 			pt.executeUpdate();

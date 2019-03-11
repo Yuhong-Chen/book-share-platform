@@ -1,10 +1,14 @@
 package test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
+
+import java.util.ArrayList;
 
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.Application;
+import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import org.glassfish.jersey.server.ResourceConfig;
@@ -30,44 +34,35 @@ public class userResourceTest extends JerseyTest {
 
     @Test
     public void getAlienTest() {
-        user entity = target("/users/1").request().get(user.class);
+        user entity = target("/user/1").request().get(user.class);
         assertEquals("userName: ", "Kelly", entity.getUserName());
-        assertEquals("passWord: ", "123456", entity.getUserPwd());
-    }
-
-
-    @Test
-    public void getAliensTest() {
-        Response response = target("/users").request().get();
-        assertTrue(response.readEntity(String.class).equals("returned all users"));
+        assertEquals("passWord: ", "123", entity.getUserPwd());
     }
 
 
     @Test
     public void PostAlienTest() {
-        Response response = target("/users/create").request()
-                .post(Entity.json("{\"username\":\"Yuhong Chen\",\"userpwd\":1314520}"));
-        assertTrue(response.readEntity(String.class).equals("add to the database"));
+    	 user user = new user();
+    	    user.setUserName("yuhong");
+    	    user.setUserPwd("1314520");
+    	    user.setId(5);
+    	    Entity<user> userEntity = Entity.entity(user, MediaType.APPLICATION_JSON_TYPE);
+         target("/user/create").request().post(userEntity);
+         user entity = target("/user/5").request().get(user.class);
+         assertEquals("userName: ", "yuhong", entity.getUserName());
+         assertEquals("passWord: ", "1314520", entity.getUserPwd());
     }
 
 
     @Test
     public void putAlienTest() {
-        Response response = target("/update/1").request()
-                .put(Entity.json("{\"username\":\"Yuhong Chen\",\"userpwd\":1314520}"));
-        assertTrue(response.readEntity(String.class).equals("update to the database"));
-
+    	user user = new user(1,"chen","1314520");
+ 	    Entity<user> userEntity = Entity.entity(user, MediaType.APPLICATION_JSON_TYPE);
+      target("/update/1").request().put(userEntity);
+      user entity = target("/user/1").request().get(user.class);
+      assertEquals("userName: ", "chen", entity.getUserName());
+      assertEquals("passWord: ", "1314520", entity.getUserPwd());
     }
-
-
-    @Test
-    public void deleteAlienTest() {
-
-        Response response = target("/delete/1").request()
-                .delete();
-        assertTrue(response.readEntity(String.class).equals("deleted in the database"));
-    }
-
 
 
 }
