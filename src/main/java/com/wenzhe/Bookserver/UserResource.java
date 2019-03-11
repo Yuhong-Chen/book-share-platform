@@ -27,8 +27,6 @@ public class UserResource {
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<user> getAliens() {
-		
-		System.out.print("calling");
 		return repo.getAliens();
 	}
 
@@ -40,13 +38,11 @@ public class UserResource {
 	}
 	
 	@POST
-	@Path("create")
-	@Consumes(MediaType.APPLICATION_JSON)
+	@Path("/register")
 	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
 	public user createAlien(user user) {
-		//System.out.println(alien);
 		repo.create(user);
-		System.out.println("finish create");
 		return user;
 	}
 	
@@ -56,7 +52,6 @@ public class UserResource {
 	@Produces(MediaType.APPLICATION_JSON)
 	public user updateAlien(@PathParam("id") int id,user user) {
 		repo.update(id,user);
-		System.out.println("update successful");
 		return user;
 	}
 	
@@ -65,7 +60,6 @@ public class UserResource {
 	@Produces(MediaType.APPLICATION_JSON)
 	public void deleteAlien(@PathParam("id") int id) {
 		repo.delete(id);
-		System.out.print("delete successful");
 	}
 	
 	
