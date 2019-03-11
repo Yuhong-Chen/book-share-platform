@@ -53,7 +53,6 @@ public class userResourceTest extends JerseyTest {
          assertEquals("passWord: ", "1314520", entity.getUserPwd());
     }
 
-
     @Test
     public void putAlienTest() {
     	user user = new user(3,"chen","1314520");
