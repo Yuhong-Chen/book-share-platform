@@ -1,5 +1,6 @@
 package impl.GUI;
 
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import javafx.application.Application;
@@ -26,8 +27,20 @@ public class Register extends Application {
         JFXPasswordField passwordInput = UIComponents.genPasswordField("Enter your desired password");
         mainCol.getChildren().add(passwordInput);
 
-        JFXPasswordField passwordReentry = UIComponents.genPasswordField("Re-enter your chosen password");
+        JFXPasswordField passwordReentry = UIComponents.genPasswordField("Re-enter your chosen password", false);
+        Helpers.ensureIdenticalValues(passwordInput, passwordReentry, "The entered passwords must be identical.");
         mainCol.getChildren().add(passwordReentry);
+
+        JFXButton signUp = new JFXButton("Sign Up");
+        signUp.getStylesheets().add("button");
+        signUp.setOnAction(event -> {
+            if (usernameInput.validate() && passwordInput.validate()
+                && passwordInput.getText().equals(passwordReentry.getText())) {
+                // Registering a user code goes here.
+            }
+        });
+
+        mainCol.getChildren().add(signUp);
 
         //Renders what the user will see
         Scene viewport = new Scene(mainCol, 720, 480);

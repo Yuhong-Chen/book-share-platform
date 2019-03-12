@@ -25,3 +25,10 @@
 .middle {
     -fx-alignment: center;
 }
+
+.button {
+    -jfx-button-type: RAISED;
+
+    -fx-background-color: deepskyblue;
+    -fx-text-fill: aliceblue;
+}

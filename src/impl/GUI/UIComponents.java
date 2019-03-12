@@ -34,12 +34,20 @@ public class UIComponents {
      * Generates a text field suitable for password input.
      * */
     static JFXPasswordField genPasswordField(String prompt) {
+        return genPasswordField(prompt, true);
+    }
+
+    /**
+     * Generates a text field suitable for password input.
+     * */
+    static JFXPasswordField genPasswordField(String prompt, boolean isRequired) {
         JFXPasswordField passwordInput = new JFXPasswordField();
         passwordInput.setLabelFloat(true);
         passwordInput.setPromptText(prompt);
         passwordInput.getStyleClass().add("text-field");
 
-        Helpers.makeNodeRequired(passwordInput, "You must specify a password");
+        if (isRequired)
+            Helpers.makeNodeRequired(passwordInput, "You must specify a password");
 
         return passwordInput;
     }

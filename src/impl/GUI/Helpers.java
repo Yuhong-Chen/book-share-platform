@@ -1,8 +1,11 @@
 package impl.GUI;
 
+import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.controls.base.IFXLabelFloatControl;
+import com.jfoenix.controls.base.IFXValidatableControl;
 import com.jfoenix.validation.RequiredFieldValidator;
 import javafx.scene.Node;
+import javafx.scene.control.TextField;
 
 class Helpers {
 
@@ -20,8 +23,27 @@ class Helpers {
 
         parentNode.getValidators().add(validator);
         parentNode.focusedProperty().addListener((o, oldVal, newVal) -> {
+            System.out.println("New valut " + newVal);
             if (!newVal) parentNode.validate();
         });
     }
 
+    static <N extends TextField & IFXValidatableControl>
+        void ensureIdenticalValues(N initialNode, N reentryNode, String message) {
+        RequiredFieldValidator validator = new RequiredFieldValidator();
+        validator.setMessage(message);
+
+        reentryNode.getValidators().add(validator);
+
+        initialNode.focusedProperty().addListener((o, oldValue, newValue) -> {
+            if (reentryNode.getText().equals(initialNode.getText()))
+                reentryNode.validate();
+        });
+        reentryNode.focusedProperty().addListener((o, oldValue, newValue) -> {
+            System.out.println(reentryNode.getText().equals(initialNode.getText()));
+
+            if (reentryNode.getText().equals(initialNode.getText()))
+                reentryNode.validate();
+        });
+    }
 }
