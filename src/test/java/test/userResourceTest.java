@@ -53,13 +53,12 @@ public class userResourceTest extends JerseyTest {
          assertEquals("passWord: ", "1314520", entity.getUserPwd());
     }
 
-
     @Test
     public void putAlienTest() {
-    	user user = new user(1,"chen","1314520");
+    	user user = new user(3,"chen","1314520");
  	    Entity<user> userEntity = Entity.entity(user, MediaType.APPLICATION_JSON_TYPE);
-      target("/update/1").request().put(userEntity);
-      user entity = target("/user/1").request().get(user.class);
+      target("/user/update/3").request().put(userEntity);
+      user entity = target("/user/3").request().get(user.class);
       assertEquals("userName: ", "chen", entity.getUserName());
       assertEquals("passWord: ", "1314520", entity.getUserPwd());
     }

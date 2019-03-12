@@ -65,8 +65,28 @@ public class BookRepository {
 			System.out.println(e);
 		}
 		return books;
-		
-		
+	}
+	
+	
+	public book getBook(int id) {
+		book a=new book();
+		String sql2 = "select * from book where bookid="+id;
+		try {
+			Statement st = con.createStatement();
+			ResultSet rs= st.executeQuery(sql2);
+			if (rs.next()) {
+				a.setBookid(rs.getInt(1));
+				a.setBookname(rs.getString(2));
+				a.setAuthorname(rs.getString(3));
+				a.setPublisher(rs.getString(4));
+				a.setBookdiscription(rs.getString(5));
+				a.setOwner(rs.getString(6));
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println(e);
+		}
+		return a;
 	}
 	
 	
@@ -80,7 +100,6 @@ public class BookRepository {
 			pt.setString(4, b1.getPublisher());
 			pt.setString(5, b1.getBookdiscription());
 			pt.setString(6, b1.getOwner());
-		
 			pt.executeUpdate();
 			System.out.println("add book to the database");
 			

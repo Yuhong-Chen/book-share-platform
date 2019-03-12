@@ -38,9 +38,9 @@ public class UserResource {
 	}
 	
 	@POST
-	@Path("create")
-	@Consumes(MediaType.APPLICATION_JSON)
+	@Path("/register")
 	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
 	public user createAlien(user user) {
 		repo.create(user);
 		return user;

@@ -89,6 +89,7 @@ public class UserRepository {
 			pt.setInt(1,a1.getId() );
 			pt.setString(2, a1.getUserName());
 			pt.setString(3, a1.getUserPwd());
+			
 			pt.executeUpdate();
 			System.out.println("add to the database");
 			
@@ -99,7 +100,7 @@ public class UserRepository {
 	}
 	
 	public void update(int id, user a1) {
-		String sql4="updata user set username='"+a1.getUserName()+"', userpwd='"+a1.getUserPwd()+"' where id='"+id+"'";
+		String sql4="update user set username='"+a1.getUserName()+"', userpwd='"+a1.getUserPwd()+"' where id='"+id+"'";
 		try {
 			PreparedStatement pt =  (PreparedStatement) con.prepareStatement(sql4);
 			pt.executeUpdate();
