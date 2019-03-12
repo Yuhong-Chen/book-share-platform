@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css?family=Poiret+One');
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+.title {
+    -fx-font-family: "Poiret One";
+    -fx-font-size: 2em;
+    -fx-text-fill: #333;
+
+    -fx-padding: 0 0 30 0;
+}
+
+.text-field {
+    -fx-font-family: "Roboto";
+    -jfx-focus-color: deepskyblue;
+    -jfx-unfocus-color: #333;
+
+    -fx-start-margin: 80;
+    /*-fx-end-margin: 0 0 50 0;*/
+}
+
+.container {
+    -fx-alignment: bottom-center;
+}
+
+.middle {
+    -fx-alignment: center;
+}
