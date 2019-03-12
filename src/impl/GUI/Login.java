@@ -24,15 +24,12 @@ public class Login extends Application {
 
     @Override
     public void start(Stage stage) {
-        StackPane infoPane = new StackPane();
         VBox myPane = new VBox();
 
         myPane.setStyle("-fx-background-color:#DDDDDD;-fx-padding:40;-fx-font-size:24");
         myPane.setSpacing(30);
 
-        Label siteTitle = new Label("BookyBooks");
-        siteTitle.getStyleClass().add("title");
-        myPane.getChildren().add(siteTitle);
+        myPane.getChildren().add(UIComponents.genSiteTitle());
 
         JFXTextField username = new JFXTextField();
         username.setLabelFloat(true);
@@ -62,7 +59,6 @@ public class Login extends Application {
         }));
         //·
 
-        myPane.getChildren().add(infoPane);
         myPane.getStyleClass().add("container");
 
         Scene scene = new Scene(myPane, 720, 480);

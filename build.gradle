@@ -50,5 +50,5 @@ javafx {
     modules = [ 'javafx.controls' ]
 }
 
-//mainClassName = "impl.GUI.Register"
-mainClassName = "impl.GUI.Login"
+mainClassName = "impl.GUI.Register"
+//mainClassName = "impl.GUI.Login"
