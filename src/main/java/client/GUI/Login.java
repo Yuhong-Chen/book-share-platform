@@ -41,7 +41,7 @@ class Login {
 
         //Send login request
         button.setOnAction(event -> {
-            Request request = new Request("User/" + username.getText());
+            Request request = new Request("user/" + username.getText());
             JsonObject response = request.get();
 
             if (response != null) {

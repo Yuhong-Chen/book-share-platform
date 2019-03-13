@@ -35,7 +35,7 @@ class Register {
                 && passwordInput.getText().equals(passwordReentry.getText())) {
                 // Registering a User code goes here.
                 JsonObject userData = new JsonObject();
-                Request request = new Request("User/register");
+                Request request = new Request("user/register");
 
                 userData.addProperty("id", usernameInput.getText());
                 userData.addProperty("userName", usernameInput.getText());
