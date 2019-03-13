@@ -1,15 +1,18 @@
-package impl.model;
+package impl.controller;
 
 import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
 public class Request {
 
-    private String hostname = "";
+    private final String hostname = "";
     private HttpURLConnection urlConnection;
 
     public Request(String resource) {
@@ -26,7 +29,7 @@ public class Request {
 
     /**
      * Sends POST request to resource at host
-     * @param json
+     * @param json object to POST as data
      */
     public void post(JsonObject json) {
         OutputStream out = null;
@@ -52,20 +55,19 @@ public class Request {
     /**
      * Sends GET request to resource at host
      */
-    public void get() {
+    public JsonObject get() {
         OutputStream out = null;
+        BufferedReader in = null;
         try {
             urlConnection.setDoOutput(true);
             urlConnection.setRequestMethod("GET");
 
-            if (con.getResponseCode() == 200) {
-                //get password
-                //return response
-
-                BufferedReader in = new BufferedReader(
-                        new InputStreamReader(con.getInputStream()));
+            if (urlConnection.getResponseCode() == 200) {
                 String line;
-                StringBuffer response = new StringBuffer();
+                StringBuilder response = new StringBuilder();
+                in = new BufferedReader(
+                        new InputStreamReader(urlConnection.getInputStream())
+                );
 
                 while ((line = in.readLine()) != null) {
                     response.append(line);
@@ -75,19 +77,14 @@ public class Request {
                 System.out.println(response.toString());
 
                 JsonParser parser = new JsonParser();
-                JsonObject o = parser.parse(response).getAsJsonObject();
+
+                return parser.parse(response.toString()).getAsJsonObject();
             }
         } catch (IOException e) {
             e.printStackTrace();
-        } finally {
-            if (out != null) {
-                try {
-                    out.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
         }
+
+        return null;
     }
 
 }

@@ -6,7 +6,7 @@ import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.controls.base.IFXLabelFloatControl;
 import com.jfoenix.validation.RequiredFieldValidator;
-import impl.model.Request;
+import impl.controller.Request;
 import javafx.application.Application;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -59,7 +59,16 @@ public class Login extends Application {
         //Send login request
         button.setOnAction(event -> {
             Request request = new Request("/login/" + username.getText());
-            request.get();
+            JsonObject response = request.get();
+
+            if (response != null) {
+                String pass = response.get("userpwd").getAsString();
+                if (pass.equals(password.getText())) {
+                    //do something
+                }
+                //else incorrect pass
+            }
+            //else error
 
         });
         //·
