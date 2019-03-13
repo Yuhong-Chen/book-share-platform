@@ -1,5 +1,5 @@
 body {
-    background: lightskyblue;
+    background: lightcoral;
     padding:0;
     margin:0;
     font-family: verdana,arial, sans-serif;
@@ -23,7 +23,7 @@ li{
     padding: 35px 0;
     border-bottom: 1px solid #f0f0f0;
     margin-bottom: 30px;
-    color:#269ABC;
+    color:lightcoral;
 }
 .form-horizontal .form-group {
     padding: 0 40px;
@@ -43,9 +43,9 @@ li{
     color: #ADADAD;
 }
 /*.form-horizontal .li3 {*/
-    /*text-align: right;*/
-    /*font-size: 12px;*/
-    /*padding: 10px 0;*/
+/*text-align: right;*/
+/*font-size: 12px;*/
+/*padding: 10px 0;*/
 /*}*/
 .li4 .submit {
     display: block;
@@ -53,14 +53,14 @@ li{
     padding: 7px 0;
     border: 0 none;
     color: #fff;
-    background-color: #269ABC;
+    background-color: lightcoral;
     cursor: pointer;
 }
 .visitor{
     font-size: 15px;
-    color: #269ABC;
+    color: lightcoral;
 }
 .visitor:hover{
     text-decoration: none;
-    color: #2A6496;
+    color:lightcoral;
 }
