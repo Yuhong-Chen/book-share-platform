@@ -17,7 +17,7 @@ public class UIComponents {
     }
 
     /**
-     * Generates a text field suitable for a user to enter their username.
+     * Generates a text field suitable for a User to enter their username.
      * */
     static JFXTextField genUsernameField() {
         JFXTextField usernameInput = new JFXTextField();

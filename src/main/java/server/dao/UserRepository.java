@@ -10,28 +10,26 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import server.bean.user;
+import server.bean.User;
 
 public class UserRepository {
 	public static int idCounter = 100;
-
-	
-	Connection con = null;
+	private Connection con = null;
 	
 	public UserRepository () {
 		
 		String url="jdbc:mysql://ww39.host.cs.st-andrews.ac.uk:3306/ww39_CS5031p2";
 		String username ="ww39";
 		String password = "h01F667.24beES";
+
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			con =DriverManager.getConnection(url,username,password);
-			
+			con = DriverManager.getConnection(url,username,password);
 		} catch (Exception e) {
 			// TODO: handle exception
 			System.out.print(e);
 		}
-		if(con==null) {
+		if (con == null) {
 			System.out.println("not connected");
 		}else {
 			System.out.println("connect successful");
@@ -40,35 +38,41 @@ public class UserRepository {
 		
 	}
 	
-	public List<user> getAliens() {
-		List<user> users = new ArrayList<user>();
+	public List<User> getAliens() {
+		List<User> users = new ArrayList<User>();
 		String sql1 = "select * from user";
+
 		try {
 			Statement st = con.createStatement();
-			ResultSet rs= st.executeQuery(sql1);
+			ResultSet rs = st.executeQuery(sql1);
+
 			while (rs.next()) {
-				user a = new user();
+				User a = new User();
+
 				a.setId(rs.getString(1));
 				a.setUserName(rs.getString(2));
 				a.setUserPwd(rs.getString(3));
 				
 				users.add(a);
 			}
+
 			System.out.println("returned all users");
 		} catch (Exception e) {
 			// TODO: handle exception
-			System.out.println(e);
+			e.printStackTrace();
 		}
 		return users;
 		
 		
 	}
-	public user getAlienbyname(String name) {
-		user a=new user();
-		String sql2 = "select * from user where username=\""+name + "\"";
+	public User getAlienByName(String name) {
+		User a = new User();
+		String sql2 = "select * from user where username=\"" + name + "\"";
+
 		try {
 			Statement st = con.createStatement();
-			ResultSet rs= st.executeQuery(sql2);
+			ResultSet rs = st.executeQuery(sql2);
+
 			if (rs.next()) {
 				a.setId(rs.getString(1));
 				a.setUserName(rs.getString(2));
@@ -76,16 +80,17 @@ public class UserRepository {
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
-			System.out.println(e);
+			e.printStackTrace();
 		}
 		return a;
 	}
-	public user getAlien(String id) {
-		user a=new user();
-		String sql2 = "select * from user where id="+id;
+	public User getAlien(String id) {
+		User a = new User();
+		String sql2 = "select * from user where id=" + id;
 		try {
 			Statement st = con.createStatement();
-			ResultSet rs= st.executeQuery(sql2);
+			ResultSet rs = st.executeQuery(sql2);
+
 			if (rs.next()) {
 				a.setId(rs.getString(1));
 				a.setUserName(rs.getString(2));
@@ -98,38 +103,40 @@ public class UserRepository {
 		return a;
 	}
 	
-	public void create(user a1) {
+	public void create(User a1) {
 		String sql3 = "insert into user values (?,?,?)";
+
 		try {
-			PreparedStatement pt =  (PreparedStatement) con.prepareStatement(sql3);
+			PreparedStatement pt = (PreparedStatement) con.prepareStatement(sql3);
+
 			pt.setInt(1, ++idCounter );
 			pt.setString(2, a1.getUserName());
 			pt.setString(3, a1.getUserPwd());
 			
 			pt.executeUpdate();
 			System.out.println("add to the database");
-			
 		} catch (Exception e) {
 			// TODO: handle exception
-			System.out.println(e);
+			e.printStackTrace();
 		}
 	}
 	
-	public void update(int id, user a1) {
-		String sql4="update user set username='"+a1.getUserName()+"', userpwd='"+a1.getUserPwd()+"' where id='"+id+"'";
+	public void update(int id, User a1) {
+		String sql4 = "update user set username='" + a1.getUserName() + "', userpwd='" + a1.getUserPwd() + "' where id='" + id + "'";
+
 		try {
-			PreparedStatement pt =  (PreparedStatement) con.prepareStatement(sql4);
+			PreparedStatement pt = (PreparedStatement) con.prepareStatement(sql4);
 			pt.executeUpdate();
 			System.out.println("update to the database");
-			
 		} catch (Exception e) {
 			// TODO: handle exception
-			System.out.println(e);
+			e.printStackTrace();
 		}
 	}
 	
 	public void delete(int id) {
-		String sql5= "delete from user where id ='"+id+"'";
+		String sql5= "delete from user where id ='" + id + "'";
+
 		try {
 			PreparedStatement pt =  (PreparedStatement) con.prepareStatement(sql5);
 			pt.executeUpdate();

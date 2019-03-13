@@ -1,4 +1,4 @@
-package server.Bookserver;
+package server.bookserver;
 
 import java.util.List;
 
@@ -9,19 +9,17 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import server.bean.book;
+import server.bean.Book;
 import server.dao.BookRepository;
 
 
 @Path("book")
 public class BookResource {
-	
-		
-		BookRepository repo = new BookRepository();
+		private BookRepository repo = new BookRepository();
 		
 		@GET
 		@Produces(MediaType.APPLICATION_JSON)
-		public List<book> getAliens() {
+		public List<Book> getAliens() {
 			
 			System.out.print("calling");
 			return repo.getBooks();
@@ -31,10 +29,10 @@ public class BookResource {
 		@Path("addbook")
 		@Consumes(MediaType.APPLICATION_JSON)
 		@Produces(MediaType.APPLICATION_JSON)
-		public book createAlien(book book) {
+		public Book createAlien(Book book) {
 			//System.out.println(alien);
 			repo.addBook(book);
-			System.out.println("finish adding book");
+			System.out.println("finish adding Book");
 			return book;
 		}
 

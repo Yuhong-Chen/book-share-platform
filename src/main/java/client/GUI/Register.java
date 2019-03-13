@@ -33,7 +33,7 @@ class Register {
         signUp.setOnAction(event -> {
             if (usernameInput.validate() && passwordInput.validate()
                 && passwordInput.getText().equals(passwordReentry.getText())) {
-                // Registering a user code goes here.
+                // Registering a User code goes here.
                 JsonObject userData = new JsonObject();
                 Request request = new Request("user/register");
 
@@ -49,7 +49,7 @@ class Register {
         mainCol.getChildren().add(signUp);
         mainCol.getStyleClass().addAll("container", "middle");
 
-        //Renders what the user will see
+        //Renders what the User will see
         Scene myPage = new Scene(mainCol, 720, 480);
         myPage.getStylesheets().addAll(Register.class.getResource("/css/Sitewide.css").toExternalForm());
 

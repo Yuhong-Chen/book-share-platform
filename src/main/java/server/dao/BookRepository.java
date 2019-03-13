@@ -8,54 +8,54 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import server.bean.book;
-import server.bean.user;
+import server.bean.Book;
 
 public class BookRepository {
 
 
-	Connection con = null;
+	private Connection con = null;
 	
 	public BookRepository () {
 		
-		String url="jdbc:mysql://localhost:3306/test1";
-		String url2="jdbc:mysql://ww39.host.cs.st-andrews.ac.uk:3306/ww39_CS5031p2";
-		String user ="root";
-		String user2="ww39";
+		String url = "jdbc:mysql://localhost:3306/test1";
+		String url2 = "jdbc:mysql://ww39.host.cs.st-andrews.ac.uk:3306/ww39_CS5031p2";
+
+		String user = "root";
+		String user2 = "ww39";
+
 		String password = "123456wwz";
 		String password2 = "h01F667.24beES";
+
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			//con =DriverManager.getConnection(url,user,password);
-			con =DriverManager.getConnection(url2,user2,password2);
+			//con =DriverManager.getConnection(url,User,password);
+			con = DriverManager.getConnection(url2,user2,password2);
 			
 		} catch (Exception e) {
 			// TODO: handle exception
 			System.out.print(e);
 		}
-		if(con==null) {
-			System.out.println("not connecte");
+		if(con == null) {
+			System.out.println("not connected");
 		}else {
 			System.out.println("connect successful");
 		}
-		
-		
 	}
 	
-	
-	public List<book> getBooks() {
-		List<book> books = new ArrayList<book>();
-		String sql1 = "select * from book";
+	public List<Book> getBooks() {
+		List<Book> books = new ArrayList<Book>();
+		String sql1 = "select * from Book";
 		try {
 			Statement st = con.createStatement();
-			ResultSet rs= st.executeQuery(sql1);
+			ResultSet rs = st.executeQuery(sql1);
+
 			while (rs.next()) {
-				book b = new book();
-				b.setBookid(rs.getInt(1));
-				b.setBookname(rs.getString(2));
-				b.setAuthorname(rs.getString(3));
+				Book b = new Book();
+				b.setBookId(rs.getInt(1));
+				b.setBookName(rs.getString(2));
+				b.setAuthorName(rs.getString(3));
 				b.setPublisher(rs.getString(4));
-				b.setBookdiscription(rs.getString(5));
+				b.setBookDescription(rs.getString(5));
 				b.setOwner(rs.getString(6));
 				
 				books.add(b);
@@ -65,24 +65,24 @@ public class BookRepository {
 			System.out.println(e);
 		}
 		return books;
-		
-		
 	}
 	
 	
-	public void addBook(book b1) {
-		String sql3 = "insert into book values (?,?,?,?,?,?)";
+	public void addBook(Book b1) {
+		String sql3 = "insert into Book values (?,?,?,?,?,?)";
+
 		try {
 			PreparedStatement pt =  (PreparedStatement) con.prepareStatement(sql3);
-			pt.setInt(1, b1.getBookid());
-			pt.setString(2, b1.getBookname());
-			pt.setString(3, b1.getAuthorname());
+
+			pt.setInt(1, b1.getBookId());
+			pt.setString(2, b1.getBookName());
+			pt.setString(3, b1.getAuthorName());
 			pt.setString(4, b1.getPublisher());
-			pt.setString(5, b1.getBookdiscription());
+			pt.setString(5, b1.getBookDescription());
 			pt.setString(6, b1.getOwner());
+
 			pt.executeUpdate();
-			System.out.println("add book to the database");
-			
+			System.out.println("add Book to the database");
 		} catch (Exception e) {
 			// TODO: handle exception
 			System.out.println(e);
