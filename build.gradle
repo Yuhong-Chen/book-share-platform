@@ -36,6 +36,11 @@ sourceSets {
 dependencies {
     // JAX-RS 2.0(.1)
     compile 'javax.ws.rs:javax.ws.rs-api:2.0.1'
+    compile 'com.sun.activation:javax.activation:1.2.0'
+    compile group: 'javax.xml.bind', name: 'jaxb-api', version: '2.3.0'
+    compile group: 'com.sun.xml.bind', name: 'jaxb-core', version: '2.3.0'
+    compile group: 'com.sun.xml.bind', name: 'jaxb-impl', version: '2.3.0'
+
 
     // Jersey 2.15
     // compile 'org.glassfish.jersey.containers:jersey-container-servlet:2.15'
@@ -77,4 +82,9 @@ tasks.withType(JavaCompile) {
 }
 
 mainClassName = "impl.GUI.BookyBooksUI"
-mainClassName = 'com.wenzhe.main'
+
+task runServer(type: JavaExec, description: 'build and run server') {
+    dependsOn build
+    main = 'com.wenzhe.main'
+    classpath = sourceSets.main.runtimeClasspath
+}
