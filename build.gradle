@@ -50,4 +50,4 @@ javafx {
     modules = [ 'javafx.controls' ]
 }
 
-mainClassName = "impl.GUI.Splash"
+mainClassName = "impl.GUI.BookyBooksUI"

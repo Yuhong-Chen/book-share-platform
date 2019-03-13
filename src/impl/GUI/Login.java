@@ -16,14 +16,9 @@ import javafx.stage.Stage;
 import impl.GUI.Helpers;
 import impl.Requests.Users;
 
-public class Login extends Application {
+class Login {
 
-    public static void main(String[] args) {
-        launch(args);
-    }
-
-    @Override
-    public void start(Stage stage) {
+    static Scene buildPage() {
         VBox myPane = new VBox();
 
         myPane.setSpacing(30);
@@ -60,14 +55,12 @@ public class Login extends Application {
 
         myPane.getStyleClass().add("container");
 
-        Scene scene = new Scene(myPane, 720, 480);
+        Scene myPage = new Scene(myPane, 720, 480);
 
-        scene.getStylesheets()
+        myPage.getStylesheets()
             .addAll(Login.class.getResource("/css/Sitewide.css").toExternalForm(),
                     Login.class.getResource("/css/LoginScreen.css").toExternalForm());
 
-        stage.setScene(scene);
-        stage.setTitle("Log into your Account");
-        stage.show();
+        return myPage;
     }
 }

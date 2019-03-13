@@ -23,7 +23,6 @@ class Helpers {
 
         parentNode.getValidators().add(validator);
         parentNode.focusedProperty().addListener((o, oldVal, newVal) -> {
-            System.out.println("New valut " + newVal);
             if (!newVal) parentNode.validate();
         });
     }
@@ -40,7 +39,6 @@ class Helpers {
                 reentryNode.validate();
         });
         reentryNode.focusedProperty().addListener((o, oldValue, newValue) -> {
-            System.out.println(reentryNode.getText().equals(initialNode.getText()));
 
             if (reentryNode.getText().equals(initialNode.getText()))
                 reentryNode.validate();
