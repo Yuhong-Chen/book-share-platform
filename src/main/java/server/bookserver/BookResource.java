@@ -13,7 +13,7 @@ import server.bean.Book;
 import server.dao.BookRepository;
 
 
-@Path("Book")
+@Path("book")
 public class BookResource {
 		private BookRepository repo = new BookRepository();
 		

@@ -18,7 +18,7 @@ import server.dao.BookRepository;
 import server.dao.UserRepository;
 
 
-@Path("User")
+@Path("user")
 public class UserResource {
 	
 	private UserRepository repo = new UserRepository();
