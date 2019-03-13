@@ -16,7 +16,6 @@ public class Register extends Application {
         //This will contain the majority of all the UI elements, if not all
         VBox mainCol = new VBox();
 
-        mainCol.setStyle("-fx-background-color:#DDDDDD;-fx-padding:40;-fx-font-size:24");
         mainCol.setSpacing(30);
 
         mainCol.getChildren().add(UIComponents.genSiteTitle());

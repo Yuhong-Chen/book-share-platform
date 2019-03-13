@@ -19,6 +19,9 @@
 }
 
 .container {
+    -fx-background-color: #DDDDDD;
+    -fx-padding:40;
+    -fx-font-size:24;
     -fx-alignment: bottom-center;
 }
 

@@ -26,7 +26,6 @@ public class Login extends Application {
     public void start(Stage stage) {
         VBox myPane = new VBox();
 
-        myPane.setStyle("-fx-background-color:#DDDDDD;-fx-padding:40;-fx-font-size:24");
         myPane.setSpacing(30);
 
         myPane.getChildren().add(UIComponents.genSiteTitle());
