@@ -58,12 +58,9 @@ public class Login extends Application {
 
         //Send login request
         button.setOnAction(event -> {
-            Request request = new Request("/login");
-            JsonObject json = new JsonObject();
+            Request request = new Request("/login/" + username.getText());
+            request.get();
 
-            json.addProperty("username", username.getText());
-            json.addProperty("password", password.getText());
-            request.post(json);
         });
         //·
 
