@@ -1,9 +1,7 @@
-package com.wenzhe.Bookserver;
-
+package server.Bookserver;
 
 
 import java.util.List;
-
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -14,10 +12,10 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import com.wenzhe.bean.book;
-import com.wenzhe.bean.user;
-import com.wenzhe.dao.BookRepository;
-import com.wenzhe.dao.UserRepository;
+import server.bean.book;
+import server.bean.user;
+import server.dao.BookRepository;
+import server.dao.UserRepository;
 
 
 @Path("user")

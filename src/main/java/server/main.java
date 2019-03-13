@@ -1,4 +1,4 @@
-package com.wenzhe;
+package server;
 
 import java.io.IOException;
 import java.net.URI;
@@ -21,7 +21,7 @@ public class main {
 	   */
 	  public static HttpServer startServer() {
 	    // create a resource config that scans for JAX-RS resources and providers
-	    final ResourceConfig rc = new ResourceConfig().packages("com.wenzhe.Bookserver");
+	    final ResourceConfig rc = new ResourceConfig().packages("server.Bookserver");
 	    // create and start a new instance of grizzly http server
 	    // exposing the Jersey application at BASE_URI
 	    return GrizzlyHttpServerFactory.createHttpServer(URI.create(BASE_URI), rc);

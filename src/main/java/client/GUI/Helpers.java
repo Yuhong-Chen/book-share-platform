@@ -1,6 +1,5 @@
-package impl.GUI;
+package client.GUI;
 
-import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.controls.base.IFXLabelFloatControl;
 import com.jfoenix.controls.base.IFXValidatableControl;
 import com.jfoenix.validation.RequiredFieldValidator;

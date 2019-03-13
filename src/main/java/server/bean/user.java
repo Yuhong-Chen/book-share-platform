@@ -1,4 +1,4 @@
-package com.wenzhe.bean;
+package server.bean;
 
 
 public class user {
@@ -18,36 +18,34 @@ public class user {
 		this.userName = userName;
 		this.userPwd = userPwd;
 	}
+
 	public String getUserName() {
 		return userName;
 	}
+
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
+
 	public String getUserPwd() {
 		return userPwd;
 	}
+
 	public void setUserPwd(String userPwd) {
 		this.userPwd = userPwd;
 	}
-
 
 	public int getId() {
 		return id;
 	}
 
-
 	public void setId(int id) {
 		this.id = id;
 	}
-
 
 	@Override
 	public String toString() {
 		return "Alien [id=" + id + ", userName=" + userName + ", userPwd=" + userPwd + "]";
 	}
-	
-	
-	
-	
+
 }

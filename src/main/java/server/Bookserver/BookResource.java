@@ -1,4 +1,4 @@
-package com.wenzhe.Bookserver;
+package server.Bookserver;
 
 import java.util.List;
 
@@ -9,8 +9,8 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import com.wenzhe.bean.book;
-import com.wenzhe.dao.BookRepository;
+import server.bean.book;
+import server.dao.BookRepository;
 
 
 @Path("book")

@@ -1,23 +1,16 @@
-package test;
+
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
-
-import java.util.ArrayList;
-
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.Application;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
-
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.test.JerseyTest;
 
 import org.junit.Test;
 
-import com.wenzhe.Bookserver.UserResource;
-import com.wenzhe.bean.user;
+import server.Bookserver.UserResource;
+import server.bean.user;
 
 public class userResourceTest extends JerseyTest {
 

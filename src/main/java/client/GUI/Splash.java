@@ -1,7 +1,6 @@
-package impl.GUI;
+package client.GUI;
 
 import com.jfoenix.controls.JFXButton;
-import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
 
