@@ -1,18 +1,16 @@
 package server.bean;
 
 
-public class user {
+public class User {
 	private String id;
 	private String userName;
 	private String userPwd;
-	
-	public user() {
-		
-		// TODO Auto-generated constructor stub
+
+	public User() {
+		//empty constructor
 	}
 	
-	
-	public user(String id, String userName, String userPwd) {
+	public User(String id, String userName, String userPwd) {
 	
 		this.id = id;
 		this.userName = userName;

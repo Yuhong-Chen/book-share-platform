@@ -12,7 +12,7 @@ import java.net.URL;
 
 public class Request {
 
-    private final String hostname = "http://localhost:8080/Bookserver/webapi/";
+    private final String hostname = "http://localhost:8080/bookserver/webapi/";
     private HttpURLConnection urlConnection;
 
     public Request(String resource) {

@@ -1,4 +1,4 @@
-package server.Bookserver;
+package server.bookserver;
 
 
 import java.util.List;
@@ -12,13 +12,13 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import server.bean.book;
-import server.bean.user;
+import server.bean.Book;
+import server.bean.User;
 import server.dao.BookRepository;
 import server.dao.UserRepository;
 
 
-@Path("user")
+@Path("User")
 public class UserResource {
 	
 	private UserRepository repo = new UserRepository();
@@ -27,21 +27,21 @@ public class UserResource {
 	
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<user> getAliens() {
+	public List<User> getAliens() {
 		return repo.getAliens();
 	}
 
 	@GET
 	@Path("/{username}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public user getAlienbyname(@PathParam("username") String name) {
-		return repo.getAlienbyname(name);
+	public User getAlienByName(@PathParam("username") String name) {
+		return repo.getAlienByName(name);
 	}
 
 	/*@GET
 	@Path("/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public user getAlien(@PathParam("id") String id) {
+	public User getAlien(@PathParam("id") String id) {
 		return repo.getAlien(id);
 	}*/
 	
@@ -49,7 +49,7 @@ public class UserResource {
 	@Path("/register")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public user createAlien(user user) {
+	public User createAlien(User user) {
 		System.out.println(user.getUserName());
 		repo.create(user);
 		return user;
@@ -59,7 +59,7 @@ public class UserResource {
 	@Path("/update/{id}")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public user updateAlien(@PathParam("id") int id,user user) {
+	public User updateAlien(@PathParam("id") int id, User user) {
 		repo.update(id,user);
 		return user;
 	}
@@ -74,7 +74,7 @@ public class UserResource {
 	@GET
 	@Path("/getbooks")
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<book> getBooks() {
+	public List<Book> getBooks() {
 		
 		System.out.print("calling");
 		return repo2.getBooks();
@@ -84,10 +84,10 @@ public class UserResource {
 	@Path("/addbook")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public book createAlien(book book) {
+	public Book createAlien(Book book) {
 		//System.out.println(alien);
 		repo2.addBook(book);
-		System.out.println("finish adding book");
+		System.out.println("finish adding Book");
 		return book;
 	}
 	
