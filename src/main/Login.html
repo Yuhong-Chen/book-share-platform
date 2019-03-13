@@ -82,13 +82,19 @@
     });
 
     $('#btnSubmit').click(function () {
-        if ($('#username').val() == 'Patrick' && $('#password').val() == '123456') {
-            alert('Login success！');
-            window.open('index.html');
-        }
-        else {
+        var url = "localhost:8080/login";
+
+        $.get(url + "/" + $('#username').val(), function(data) {
+            if ($('#password').val() == data.userpwd) {
+                alert('Login success！');
+                window.open('index.html');
+            } else {
+                alert('Login Fail');
+            }
+        })
+        .fail(function() {
             alert('Login Fail');
-        }
+        });
     })
 </script>
 </html>
