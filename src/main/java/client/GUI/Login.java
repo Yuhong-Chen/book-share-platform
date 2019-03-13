@@ -41,13 +41,15 @@ class Login {
 
         //Send login request
         button.setOnAction(event -> {
-            Request request = new Request("/login/" + username.getText());
+            Request request = new Request("user/" + username.getText());
             JsonObject response = request.get();
 
             if (response != null) {
-                String pass = response.get("userpwd").getAsString();
+                String pass = response.get("userPwd").getAsString();
+                System.out.println(pass);
                 if (pass.equals(password.getText())) {
                     //do something
+                    System.out.println("log in works");
                 }
                 //else incorrect pass
             }

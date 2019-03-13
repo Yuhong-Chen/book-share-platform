@@ -12,7 +12,7 @@ import java.net.URL;
 
 public class Request {
 
-    private final String hostname = "";
+    private final String hostname = "http://localhost:8080/Bookserver/webapi/";
     private HttpURLConnection urlConnection;
 
     public Request(String resource) {
@@ -62,7 +62,10 @@ public class Request {
             urlConnection.setDoOutput(true);
             urlConnection.setRequestMethod("GET");
 
+            System.out.println(urlConnection.getResponseCode());
+
             if (urlConnection.getResponseCode() == 200) {
+                System.out.println(urlConnection.getResponseMessage());
                 String line;
                 StringBuilder response = new StringBuilder();
                 in = new BufferedReader(
@@ -70,6 +73,7 @@ public class Request {
                 );
 
                 while ((line = in.readLine()) != null) {
+                    System.out.println(line);
                     response.append(line);
                 }
                 in.close();
