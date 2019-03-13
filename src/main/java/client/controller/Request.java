@@ -1,4 +1,4 @@
-package impl.controller;
+package client.controller;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -12,7 +12,7 @@ import java.net.URL;
 
 public class Request {
 
-    private final String hostname = "";
+    private final String hostname = "http://localhost:8080/Bookserver/webapi/";
     private HttpURLConnection urlConnection;
 
     public Request(String resource) {
@@ -31,7 +31,7 @@ public class Request {
      * Sends POST request to resource at host
      * @param json object to POST as data
      */
-    public void post(JsonObject json) {
+    public int post(JsonObject json) {
         OutputStream out = null;
         try {
             urlConnection.setDoOutput(true);
@@ -39,6 +39,8 @@ public class Request {
 
             out = urlConnection.getOutputStream();
             out.write(json.toString().getBytes());
+
+            return urlConnection.getResponseCode();
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
@@ -50,6 +52,8 @@ public class Request {
                 }
             }
         }
+
+        return 0;
     }
 
     /**
@@ -61,6 +65,8 @@ public class Request {
         try {
             urlConnection.setDoOutput(true);
             urlConnection.setRequestMethod("GET");
+
+            System.out.println(urlConnection.getResponseCode());
 
             if (urlConnection.getResponseCode() == 200) {
                 String line;

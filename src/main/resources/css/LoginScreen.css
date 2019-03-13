@@ -1,0 +1,6 @@
+.login-button {
+    -jfx-button-type: RAISED;
+
+    -fx-background-color: deepskyblue;
+    -fx-text-fill: aliceblue;
+}
