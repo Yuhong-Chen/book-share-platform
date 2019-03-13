@@ -12,6 +12,7 @@
     <link media="all" type="text/css" rel="stylesheet" href="css/login.css">
     <!--locally stored library-->
     <script src="jquery-3.3.1.slim.js"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="popper.min.js"></script>
 </head>
 <body>
@@ -73,14 +74,19 @@
     });
 
     $('#btnSubmit').click(function () {
-        var url = "localhost:8080/login";
+        var url = "http://localhost:8080/Bookserver/webapi/user/";
 
-        $.get(url + "/" + $('#username').val(), function(data) {
-            if ($('#password').val() == data.userpwd) {
-                alert('Login success！');
-                window.open('mainPage.html');
-            } else {
-                alert('Login Fail');
+        jQuery.get({
+            url: url + $('#username').val(),
+            dataType: "application/json",
+            success: function(data) {
+                console.log(data)
+                if ($('#password').val() == data.userPwd) {
+                    alert('Login success！');
+                    window.open('mainPage.html');
+                } else {
+                    alert('Password Incorrect');
+                }
             }
         })
         .fail(function() {

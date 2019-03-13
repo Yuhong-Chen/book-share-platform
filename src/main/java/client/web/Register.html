@@ -12,6 +12,8 @@
     <link media="all" type="text/css" rel="stylesheet" href="css/Register.css">
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="jquery-3.3.1.slim.js"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
     <script src="popper.min.js"></script>
 </head>
 <body>
@@ -109,15 +111,19 @@
             alert('Re-enter password not match password before');
         }
         else if (passwordCheck.val() === password.val()){
-            var url = "localhost:8080/user/create";
+            var url = "http://localhost:8080/Bookserver/webapi/user";
             var data = {
-                "id": username.length + Math.floor((Math.random() * 100) + 1),
-                "username": username,
-                "userpwd": password
+                "id": username.val(),
+                "userName": username.val(),
+                "userPwd": password.val()
             }
 
-            $.post(url, )
-
+            $.post({
+                url: url,
+                data: data,
+            }).fail(function() {
+                alert('Register Fail');
+            });
 
             window.location.href="mainPage.html";
         }
