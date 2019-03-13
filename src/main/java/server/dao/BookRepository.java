@@ -1,4 +1,4 @@
-package com.wenzhe.dao;
+package server.dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -8,8 +8,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.wenzhe.bean.book;
-import com.wenzhe.bean.user;
+import server.bean.book;
+import server.bean.user;
 
 public class BookRepository {
 

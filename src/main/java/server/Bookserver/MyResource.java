@@ -1,4 +1,4 @@
-package com.wenzhe.Bookserver;
+package server.Bookserver;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
