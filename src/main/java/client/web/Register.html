@@ -12,6 +12,8 @@
     <link media="all" type="text/css" rel="stylesheet" href="css/Register.css">
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="jquery-3.3.1.slim.js"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
     <script src="popper.min.js"></script>
 </head>
 <body>
@@ -52,54 +54,80 @@
     var password = $("#password");
     var passwordCheck = $("#passwordCheck");
     var btnSubmit2 = $("#btnSubmit2");
+
     username.focus(function () {
         username.val('');
     });
-   password.focus(function () {
+
+    password.focus(function () {
        password.val('');
     });
+
     passwordCheck.focus(function () {
         passwordCheck.val('');
     });
+
     username.blur(function () {
         if (username.val() ==='') {
             username.val('User name can not empty').css({'color':'red'});
         }
     });
+
     username.focus(function () {
         username.css({'color':'#ADADAD'});
     });
 
-   password.blur(function () {
+    password.blur(function () {
         if (password.val() === '') {
            password.val('Password can not empty').css({'color':'red'});
         }
     });
-   password.focus(function () {
+
+    password.focus(function () {
        password.css({'color':'#ADADAD'});
     });
+
     passwordCheck.blur(function () {
         if (passwordCheck.val() === '') {
             passwordCheck.val('Type your password first').css({'color':'red'});
         }
     });
+
     passwordCheck.focus(function () {
         passwordCheck.css({'color':'#ADADAD'});
     });
 
     $('#btnSubmit').click(function () {
-        if (username.val() ===''||username.val() === 'User name can not empty') {
+        if (username.val() ==='' || username.val() === 'User name can not empty') {
             alert('User name can not empty');
-        } else if (password.val() === ''||password.val() === 'Password can not empty') {
+        }
+        else if (password.val() === '' || password.val() === 'Password can not empty') {
             alert('Password can not empty');
-        }else if (passwordCheck.val() === ''||passwordCheck.val() ==='Type your password first') {
+        }
+        else if (passwordCheck.val() === '' || passwordCheck.val() ==='Type your password first') {
             alert('Type your password first');
-        }else if(passwordCheck.val() !== password.val()){
+        }
+        else if (passwordCheck.val() !== password.val()){
             alert('Re-enter password not match password before');
-        }else  if(passwordCheck.val() === password.val()){
-            //Please connect to the database here! Add the user into database
+        }
+        else if (passwordCheck.val() === password.val()){
+            var url = "http://localhost:8080/Bookserver/webapi/user";
+            var data = {
+                "id": username.val(),
+                "userName": username.val(),
+                "userPwd": password.val()
+            }
+
+            $.post({
+                url: url,
+                data: data,
+            }).fail(function() {
+                alert('Register Fail');
+            });
+
             window.location.href="mainPage.html";
-        }else{
+        }
+        else {
             alert('Register fail');
         }
     });
