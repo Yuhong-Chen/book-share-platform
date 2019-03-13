@@ -24,12 +24,18 @@ repositories {
 
 sourceSets {
     main {
-        java.srcDir("src")
-        resources.srcDir("resources")
+        java {
+            srcDir "src/main/java"
+        }
+        resources {
+            srcDir "src/main/resources"
+        }
     }
 
     test {
-        java.srcDir("src")
+        java {
+            srcDir "src/test/java"
+        }
     }
 }
 
@@ -77,14 +83,14 @@ javafx {
     modules = [ 'javafx.controls' ]
 }
 
-tasks.withType(JavaCompile) {
-    options.encoding = 'UTF-8'
-}
-
-mainClassName = "impl.GUI.BookyBooksUI"
+//tasks.withType(JavaCompile) {
+//    options.encoding = 'UTF-8'
+//}
 
 task runServer(type: JavaExec, description: 'build and run server') {
     dependsOn build
-    main = 'com.wenzhe.main'
+    main = 'server.main'
     classpath = sourceSets.main.runtimeClasspath
 }
+
+mainClassName = "client.GUI.BookyBooksUI"
