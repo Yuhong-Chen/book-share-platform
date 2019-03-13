@@ -35,7 +35,6 @@ public class UserResource {
 	@Path("/{username}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public user getAlienbyname(@PathParam("username") String name) {
-		System.out.println(name);
 		return repo.getAlienbyname(name);
 	}
 
@@ -51,6 +50,7 @@ public class UserResource {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public user createAlien(user user) {
+		System.out.println(user.getUserName());
 		repo.create(user);
 		return user;
 	}

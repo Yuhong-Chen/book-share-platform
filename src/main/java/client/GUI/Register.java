@@ -1,5 +1,7 @@
 package client.GUI;
 
+import client.controller.Request;
+import com.google.gson.JsonObject;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
@@ -32,6 +34,15 @@ class Register {
             if (usernameInput.validate() && passwordInput.validate()
                 && passwordInput.getText().equals(passwordReentry.getText())) {
                 // Registering a user code goes here.
+                JsonObject userData = new JsonObject();
+                Request request = new Request("user/register");
+
+                userData.addProperty("id", usernameInput.getText());
+                userData.addProperty("userName", usernameInput.getText());
+                userData.addProperty("userPwd", passwordInput.getText());
+
+                int res = request.post(userData);
+                System.out.println(res);
             }
         });
 

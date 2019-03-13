@@ -31,7 +31,7 @@ public class Request {
      * Sends POST request to resource at host
      * @param json object to POST as data
      */
-    public void post(JsonObject json) {
+    public int post(JsonObject json) {
         OutputStream out = null;
         try {
             urlConnection.setDoOutput(true);
@@ -39,6 +39,8 @@ public class Request {
 
             out = urlConnection.getOutputStream();
             out.write(json.toString().getBytes());
+
+            return urlConnection.getResponseCode();
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
@@ -50,6 +52,8 @@ public class Request {
                 }
             }
         }
+
+        return 0;
     }
 
     /**
@@ -65,7 +69,6 @@ public class Request {
             System.out.println(urlConnection.getResponseCode());
 
             if (urlConnection.getResponseCode() == 200) {
-                System.out.println(urlConnection.getResponseMessage());
                 String line;
                 StringBuilder response = new StringBuilder();
                 in = new BufferedReader(
@@ -73,7 +76,6 @@ public class Request {
                 );
 
                 while ((line = in.readLine()) != null) {
-                    System.out.println(line);
                     response.append(line);
                 }
                 in.close();

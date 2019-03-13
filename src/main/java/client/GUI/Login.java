@@ -52,9 +52,10 @@ class Login {
                     System.out.println("log in works");
                 }
                 //else incorrect pass
+                System.out.println("Incorrect password");
             }
             //else error
-
+            System.out.println("Error during request");
         });
         //·
 

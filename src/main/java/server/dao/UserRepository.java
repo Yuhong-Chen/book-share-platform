@@ -13,7 +13,7 @@ import java.util.List;
 import server.bean.user;
 
 public class UserRepository {
-	public static int IdCounter = 1;
+	public static int idCounter = 100;
 
 	
 	Connection con = null;
@@ -32,7 +32,7 @@ public class UserRepository {
 			System.out.print(e);
 		}
 		if(con==null) {
-			System.out.println("not connecte");
+			System.out.println("not connected");
 		}else {
 			System.out.println("connect successful");
 		}
@@ -102,7 +102,7 @@ public class UserRepository {
 		String sql3 = "insert into user values (?,?,?)";
 		try {
 			PreparedStatement pt =  (PreparedStatement) con.prepareStatement(sql3);
-			pt.setString(1,a1.getId() );
+			pt.setInt(1, ++idCounter );
 			pt.setString(2, a1.getUserName());
 			pt.setString(3, a1.getUserPwd());
 			
