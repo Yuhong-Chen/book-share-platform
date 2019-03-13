@@ -21,7 +21,8 @@ import server.dao.UserRepository;
 @Path("user")
 public class UserResource {
 	
-	UserRepository repo = new UserRepository();
+	private UserRepository repo = new UserRepository();
+	private BookRepository repo2 = new BookRepository();
 	
 	
 	@GET
@@ -30,24 +31,26 @@ public class UserResource {
 		return repo.getAliens();
 	}
 
-//	@GET
-//	@Path("/{username}")
-//	@Produces(MediaType.APPLICATION_JSON)
-//	public user getAlienbyname(@PathParam("username") String name) {
-//		return repo.getAlienbyname(name);
-//	}
 	@GET
+	@Path("/{username}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public user getAlienbyname(@PathParam("username") String name) {
+		return repo.getAlienbyname(name);
+	}
+
+	/*@GET
 	@Path("/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public user getAlien(@PathParam("id") int id) {
+	public user getAlien(@PathParam("id") String id) {
 		return repo.getAlien(id);
-	}
+	}*/
 	
 	@POST
 	@Path("/register")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public user createAlien(user user) {
+		System.out.println(user.getUserName());
 		repo.create(user);
 		return user;
 	}
@@ -67,8 +70,6 @@ public class UserResource {
 	public void deleteAlien(@PathParam("id") int id) {
 		repo.delete(id);
 	}
-	
-	BookRepository repo2 = new BookRepository();
 	
 	@GET
 	@Path("/getbooks")

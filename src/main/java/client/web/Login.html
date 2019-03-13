@@ -72,17 +72,21 @@
         }
     });
 
-    btnSubmit.click(function () {
+    $('#btnSubmit').click(function () {
+        var url = "localhost:8080/login";
 
-        // Please connect to the database here! Check the value from the database
-        if (username.val() === 'Patrick' && password.val() ==='123456') {
-            window.location.href="mainPage.html";
-        }
-        else {
+        $.get(url + "/" + $('#username').val(), function(data) {
+            if ($('#password').val() == data.userpwd) {
+                alert('Login success！');
+                window.open('mainPage.html');
+            } else {
+                alert('Login Fail');
+            }
+        })
+        .fail(function() {
             alert('Login Fail');
-        }
-    });
-
+        });
+    })
 
     btnSubmit2.click(function () {
         window.location.href="ChoosePage.html";

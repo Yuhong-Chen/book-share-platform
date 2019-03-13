@@ -2,7 +2,7 @@ package server.bean;
 
 
 public class user {
-	private int id;
+	private String id;
 	private String userName;
 	private String userPwd;
 	
@@ -12,7 +12,7 @@ public class user {
 	}
 	
 	
-	public user(int id, String userName, String userPwd) {
+	public user(String id, String userName, String userPwd) {
 	
 		this.id = id;
 		this.userName = userName;
@@ -35,11 +35,11 @@ public class user {
 		this.userPwd = userPwd;
 	}
 
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 

@@ -27,7 +27,7 @@ public class userResourceTest extends JerseyTest {
 
     @Test
     public void getAlienTest() {
-        user entity = target("/user/1").request().get(user.class);
+        user entity = target("/user/Kelly").request().get(user.class);
         assertEquals("userName: ", "Kelly", entity.getUserName());
         assertEquals("passWord: ", "123", entity.getUserPwd());
     }
@@ -38,20 +38,20 @@ public class userResourceTest extends JerseyTest {
     	 user user = new user();
     	    user.setUserName("yuhong");
     	    user.setUserPwd("1314520");
-    	    user.setId(5);
+    	    user.setId("5");
     	    Entity<user> userEntity = Entity.entity(user, MediaType.APPLICATION_JSON_TYPE);
          target("/user/create").request().post(userEntity);
-         user entity = target("/user/5").request().get(user.class);
+         user entity = target("/user/yuhong").request().get(user.class);
          assertEquals("userName: ", "yuhong", entity.getUserName());
          assertEquals("passWord: ", "1314520", entity.getUserPwd());
     }
 
     @Test
     public void putAlienTest() {
-    	user user = new user(3,"chen","1314520");
+    	user user = new user("3","chen","1314520");
  	    Entity<user> userEntity = Entity.entity(user, MediaType.APPLICATION_JSON_TYPE);
       target("/user/update/3").request().put(userEntity);
-      user entity = target("/user/3").request().get(user.class);
+      user entity = target("/user/chen").request().get(user.class);
       assertEquals("userName: ", "chen", entity.getUserName());
       assertEquals("passWord: ", "1314520", entity.getUserPwd());
     }

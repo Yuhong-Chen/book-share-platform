@@ -1,12 +1,12 @@
 package client.GUI;
 
+import client.controller.Request;
+import com.google.gson.JsonObject;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
-
-import client.Requests.Users;
 
 class Login {
 
@@ -39,10 +39,24 @@ class Login {
         button.getStyleClass().add("login-button");
         myPane.getChildren().add(button);
 
-        button.setOnAction((event -> {
-            if (username.validate() && password.validate())
-                Users.execLogin(username.getText(), password.getText());
-        }));
+        //Send login request
+        button.setOnAction(event -> {
+            Request request = new Request("user/" + username.getText());
+            JsonObject response = request.get();
+
+            if (response != null) {
+                String pass = response.get("userPwd").getAsString();
+                System.out.println(pass);
+                if (pass.equals(password.getText())) {
+                    //do something
+                    System.out.println("log in works");
+                }
+                //else incorrect pass
+                System.out.println("Incorrect password");
+            }
+            //else error
+            System.out.println("Error during request");
+        });
         //·
 
         myPane.getStyleClass().add("container");

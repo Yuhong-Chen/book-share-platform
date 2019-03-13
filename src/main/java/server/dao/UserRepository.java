@@ -13,7 +13,7 @@ import java.util.List;
 import server.bean.user;
 
 public class UserRepository {
-	public static int IdCounter = 1;
+	public static int idCounter = 100;
 
 	
 	Connection con = null;
@@ -32,7 +32,7 @@ public class UserRepository {
 			System.out.print(e);
 		}
 		if(con==null) {
-			System.out.println("not connecte");
+			System.out.println("not connected");
 		}else {
 			System.out.println("connect successful");
 		}
@@ -48,7 +48,7 @@ public class UserRepository {
 			ResultSet rs= st.executeQuery(sql1);
 			while (rs.next()) {
 				user a = new user();
-				a.setId(rs.getInt(1));
+				a.setId(rs.getString(1));
 				a.setUserName(rs.getString(2));
 				a.setUserPwd(rs.getString(3));
 				
@@ -65,12 +65,12 @@ public class UserRepository {
 	}
 	public user getAlienbyname(String name) {
 		user a=new user();
-		String sql2 = "select * from user where username="+name;
+		String sql2 = "select * from user where username=\""+name + "\"";
 		try {
 			Statement st = con.createStatement();
 			ResultSet rs= st.executeQuery(sql2);
 			if (rs.next()) {
-				a.setId(rs.getInt(1));
+				a.setId(rs.getString(1));
 				a.setUserName(rs.getString(2));
 				a.setUserPwd(rs.getString(3));
 			}
@@ -80,14 +80,14 @@ public class UserRepository {
 		}
 		return a;
 	}
-	public user getAlien(int id) {
+	public user getAlien(String id) {
 		user a=new user();
 		String sql2 = "select * from user where id="+id;
 		try {
 			Statement st = con.createStatement();
 			ResultSet rs= st.executeQuery(sql2);
 			if (rs.next()) {
-				a.setId(rs.getInt(1));
+				a.setId(rs.getString(1));
 				a.setUserName(rs.getString(2));
 				a.setUserPwd(rs.getString(3));
 			}
@@ -102,7 +102,7 @@ public class UserRepository {
 		String sql3 = "insert into user values (?,?,?)";
 		try {
 			PreparedStatement pt =  (PreparedStatement) con.prepareStatement(sql3);
-			pt.setInt(1,a1.getId() );
+			pt.setInt(1, ++idCounter );
 			pt.setString(2, a1.getUserName());
 			pt.setString(3, a1.getUserPwd());
 			
