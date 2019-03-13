@@ -13,32 +13,24 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+import impl.GUI.Helpers;
 import impl.Requests.Users;
 
-public class Login extends Application {
+class Login {
 
-    public static void main(String[] args) {
-        launch(args);
-    }
-
-    @Override
-    public void start(Stage stage) {
-        StackPane infoPane = new StackPane();
+    static Scene buildPage() {
         VBox myPane = new VBox();
 
-        myPane.setStyle("-fx-background-color:WHITE;-fx-padding:40;-fx-font-size:24");
         myPane.setSpacing(30);
 
-        Label siteTitle = new Label("BookyBooks");
-        siteTitle.getStyleClass().add("title");
-        myPane.getChildren().add(siteTitle);
+        myPane.getChildren().add(UIComponents.genSiteTitle());
 
         JFXTextField username = new JFXTextField();
         username.setLabelFloat(true);
         username.setPromptText("Enter your username");
         username.getStyleClass().add("text-field");
 
-        makeNodeRequired(username, "You must enter a username.");
+        Helpers.makeNodeRequired(username, "You must enter a username.");
 
         myPane.getChildren().add(username);
 
@@ -47,7 +39,7 @@ public class Login extends Application {
         password.setPromptText("Enter your password");
         password.getStyleClass().add("text-field");
 
-        makeNodeRequired(password, "You must enter a password.");
+        Helpers.makeNodeRequired(password, "You must enter a password.");
 
         myPane.getChildren().add(password);
 
@@ -56,39 +48,19 @@ public class Login extends Application {
         myPane.getChildren().add(button);
 
         button.setOnAction((event -> {
-            Users.execLogin(username.getText(), password.getText());
+            if (username.validate() && password.validate())
+                Users.execLogin(username.getText(), password.getText());
         }));
         //·
 
-        myPane.getChildren().add(infoPane);
         myPane.getStyleClass().add("container");
 
-        Scene scene = new Scene(myPane, 720, 480);
+        Scene myPage = new Scene(myPane, 720, 480);
 
-        scene.getStylesheets()
+        myPage.getStylesheets()
             .addAll(Login.class.getResource("/css/Sitewide.css").toExternalForm(),
                     Login.class.getResource("/css/LoginScreen.css").toExternalForm());
 
-        stage.setScene(scene);
-        stage.setTitle("Log into your Account");
-        stage.show();
-    }
-
-    /**
-     * Turns any given JFX Node into one which is required before form submission.
-     * The generic is constructed to ensure that only nodes which are capable of validation
-     * can be used as a parameter.
-     *
-     * @param parentNode the node which is required
-     * @param message the error message to show on the omission of a value for the {@param parentNode}
-     * */
-    private <N extends Node & IFXLabelFloatControl> void makeNodeRequired(N parentNode, String message) {
-        RequiredFieldValidator validator = new RequiredFieldValidator();
-        validator.setMessage(message);
-
-        parentNode.getValidators().add(validator);
-        parentNode.focusedProperty().addListener((o, oldVal, newVal) -> {
-            if (!newVal) parentNode.validate();
-        });
+        return myPage;
     }
 }
